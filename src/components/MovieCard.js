@@ -19,6 +19,8 @@ function MovieCard({ movie }) {
   return (
     <div className="movie-card">
       <img
+        // Use 'loading="lazy"' to implement native browser lazy loading
+        loading="lazy"
         src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placehold.jp/300x300?text=No+Poster'}
         alt={`${movie.Title} poster`}
       />
