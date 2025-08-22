@@ -2,8 +2,8 @@ import React from 'react';
 import MovieCard from './MovieCard';
 import './MovieList.css';
 
-function MovieList({ movies, onAddFavorite, onRemoveFavorite, favorites, isFavoriteList }) {
-  if (movies.length === 0 && !isFavoriteList) {
+function MovieList({ movies }) {
+  if (movies.length === 0) {
     return null;
   }
   
@@ -13,9 +13,6 @@ function MovieList({ movies, onAddFavorite, onRemoveFavorite, favorites, isFavor
         <MovieCard
           key={movie.imdbID}
           movie={movie}
-          onAddFavorite={onAddFavorite}
-          onRemoveFavorite={onRemoveFavorite}
-          isFavorite={favorites.some(fav => fav.imdbID === movie.imdbID)}
         />
       ))}
     </div>

@@ -1,19 +1,25 @@
 import React from 'react';
+import { useFavorites } from '../context/FavoritesContext';
 import './MovieCard.css';
 
-function MovieCard({ movie, onAddFavorite, onRemoveFavorite, isFavorite }) {
+function MovieCard({ movie }) {
+  const { favorites, addFavorite, removeFavorite } = useFavorites();
+
+  // Check if the current movie is in the favorites list
+  const isFavorite = favorites.some(fav => fav.imdbID === movie.imdbID);
+
   const handleFavoriteClick = () => {
     if (isFavorite) {
-      onRemoveFavorite(movie);
+      removeFavorite(movie);
     } else {
-      onAddFavorite(movie);
+      addFavorite(movie);
     }
   };
 
   return (
     <div className="movie-card">
       <img
-        src={movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/300x450?text=No+Poster'}
+        src={movie.Poster !== 'N/A' ? movie.Poster : 'https://placehold.jp/300x300?text=No+Poster'}
         alt={`${movie.Title} poster`}
       />
       <div className="movie-info">
